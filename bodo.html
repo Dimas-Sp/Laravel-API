@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+       <div id="prov">
+           
+       </div>
+        <img src="https://www.google.com/logos/doodles/2021/get-vaccinated-wear-a-mask-save-lives-december-13-copy-6753651837109585-s.png" alt="">
+        <input type="text" onchange="damos(document.getElementById('cari').value)" id="cari">
+        <script>
+           
+
+        function damos(mall = "OFF") {
+                var kata=''
+                fetch(`http://www.omdbapi.com/?apikey=f93bd1fe&s=`+mall)
+                .then(response => response.json())
+                .then((data) => {
+                    console.log(data.Search)
+                    for (let i = 0; i < data.Search.length; i++) {
+                        const film = data.Search[i];
+                        
+                        kata = kata+ `<h5>`+film.Title+`</h5>` 
+                        kata = kata+ ` <img src="`+film.Poster+`" alt="">`
+                    }
+                    document.getElementById('prov').innerHTML=kata
+                });
+        }
+        damos()
+        </script>
+    </div>
+</body>
+</html>
